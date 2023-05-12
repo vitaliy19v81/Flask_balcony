@@ -10,11 +10,13 @@ app = Flask(__name__)
 app.config.from_mapping({'SECRET_KEY': load_secret_key()})
 
 rooms = Room()
-rooms.set_location()
 
 
 @app.route('/')
 def index():
+    rooms.location = 'Подземелье'
+    rooms.wall = False
+    rooms.set_location()
     return render_template('index.html')
 
 
