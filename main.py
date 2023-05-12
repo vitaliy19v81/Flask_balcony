@@ -39,5 +39,5 @@ def forma():
 if __name__ == '__main__':
     """Чтобы активировать режим отладки 
     set FLASK_DEBUG=1 в командной строке ИЛИ export FLASK_DEBUG=1 в терминале"""
-    app.run(host='127.0.0.1', port=5000, debug=True)  # debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)
 
