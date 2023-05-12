@@ -1,0 +1,23 @@
+.location {
+     text-align:center;
+     font-size:20px;
+     color:#090;
+     background-color:#ddd;
+     margin-right:10px;
+}
+
+.wall {
+    color: red;
+    font-size:30px;
+    text-align:center;
+}
+
+body {
+    background-color:#ddd;
+}
+
+form {
+    color: blue;
+    font-size:20px;
+
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="" method="post">
+{{ form.csrf_token() }}
+{{ form.name.label }}
+{{ form.name }}
+{% for error in form.name.errors %}
+{{error}}
+{% endfor %}
+{{ form.emil.label }}
+{{ form.emil }}
+{% for error in form.emil.errors %}
+{{error}}
+{% endfor %}
+{{ form.message.label }}
+{{ form.message }}
+{% for error in form.message.errors %}
+{{error}}
+{% endfor %}
+{{ form.submit }}
+</form>
+
+</body>
+</html>

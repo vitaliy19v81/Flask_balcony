@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+
+
+<br>
+<br>
+<div class="row">
+    <div class="col-4">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="location" value="">
+                Вы находитесь: в Подземелье, Вам надо выбраться на балкон.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="wall" value=""></div>
+
+    </div>
+<br>
+<br>
+    <div class="col-4">
+        <form class="form-control" id="adventure_form_way" action="/forma" method="post">
+        {{ form_way.csrf_token() }}
+
+        {{ form_way.way.label }}
+        {{ form_way.way }}
+        <br>
+        <br>
+        {{ form_way.number_steps.label }}
+        {{ form_way.number_steps }}
+
+        <button form="adventure_form_way" id="sub" class="btn btn-outline-success">В путь</button>
+        </form>
+    </div>
+
+    <div class="col-4">
+        <img src="{{ url_for('static', filename='home.jpg') }}">
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    {{super()}}
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#sub').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/forma',
+                data: $('#adventure_form_way').serialize(), //
+                dataType : "json",
+                success: function (data, textStatus) { // вешаем свой обработчик на функцию success
+
+                    var div = document.getElementsByClassName('location')[0]; // находим элемент по имени класса
+                    // возвращается коллекция из которой берем нулевой элемент
+                    div.innerHTML = 'Вы находитесь: ' + data['location']; // и прописываем текст взятый из json
+                    if (data['location']=='Балконе') {
+                      alert( "Вы выбрались на балкон!" );
+                    }
+
+                    var div = document.getElementsByClassName('wall')[0]; // находим элемент по имени класса
+                    // возвращается коллекция из которой берем нулевой элемент
+                    if (data['wall']==false) {
+        <!--              alert( "Вы уперлись в стену!" );-->
+                      div.innerHTML = "Вы уперлись в стену! Смените направление."; // и прописываем текст взятый из json
+                    }else{
+                        div.innerHTML = ""
+                    }
+
+                }
+                }).done(function () {
+<!--                    alert('форма отправлена')-->
+                });
+            return false;
+            });
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,116 @@
+<!--	{% for key, value in numbers.iteritems() %}-->
+<!--    {{ [key | int, value] | min if key|int}}-->
+<!--	{% endfor %}-->
+        {% macro get_solution() %}
+    {% set newlist = varargs | list %}
+    {% for _ in varargs %}
+        {% if (newlist | sum) | string in kwargs.keys() %}
+            {{ kwargs[(newlist | sum) | string] }}
+        {% endif %}
+        {% set x = newlist.pop() %}
+    {% endfor %}
+{% endmacro %}
+
+<!--	{% macro get_solution(*varargs, **kwargs) %}-->
+<!--    {% for k in varargs|length %}-->
+<!--        {% if varargs[:varargs|length-k]|sum|string in kwargs %}-->
+<!--            {{kwargs[varargs|sum|string]}}-->
+<!--        {% endif %}-->
+<!--    {% endfor %}-->
+
+<!--{% endmacro %}-->
+
+
+{% if field.name != "csrf_token" and field.name != "submit" %}
+        {{ field.name.username.label }}
+        {{ field.name.username }}
+        {% for error in field.name.username.errors %}
+        {{error}}
+        {% endfor %}
+
+        {{ field.password.label }}
+        {{ field.password }}
+        {% for error in field.password.errors %}
+        {{error}}
+        {% endfor %}
+
+        {{ field.about_me.label }}
+        {{ field.about_me }}
+        {% for error in field.about_me.errors %}
+        {{error}}
+        {% endfor %}
+
+    {% endif %}
+
+
+<!--<form action="" method="post">-->
+<!--{{ form.csrf_token }}-->
+<!--{% for field in form %}-->
+<!--{% if field.name not in ["csrf_token", "submit"] %}-->
+<!--{{ field.label }}-->
+<!--{{ field }}-->
+<!--{% for error in field.name.errors %}-->
+<!--{{error}}-->
+<!--{% endfor %}-->
+<!--{% endif %}-->
+<!--{% endfor %}-->
+<!--{{ form.submit }}-->
+<!--</form>-->
+
+<!--<form action="" method="post">-->
+<!--{{ form.csrf_token() }}-->
+<!--{{ form.username.label }}-->
+<!--{{ form.username }}-->
+<!--{% for error in form.username.errors %}-->
+<!--{{error}}-->
+<!--{% endfor %}-->
+<!--{{ form.password.label }}-->
+<!--{{ form.password }}-->
+<!--{% for error in form.password.errors %}-->
+<!--{{error}}-->
+<!--{% endfor %}-->
+<!--{{ form.about_me.label }}-->
+<!--{{ form.about_me }}-->
+<!--{% for error in form.about_me.errors %}-->
+<!--{{error}}-->
+<!--{% endfor %}-->
+<!--{{ form.submit }}-->
+<!--</form>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--	<head>-->
+<!--		<meta charset="UTF-8">-->
+<!--		<title>Название вкладки</title>-->
+<!--		<link rel="stylesheet" href="{{ url_for('static', filename='style.css' )}}">-->
+<!--	</head>-->
+
+	<body>
+		<p>Какой-то текст в абзаце. И зачем-то следующее слово решили<br>перенести.</p>
+		<img src="https://flask.palletsprojects.com/en/2.0.x/_images/flask-logo.png"
+		alt="Image">
+		<ul>
+            <li>Какой-то пункт</li>
+            <li>И еще один</li>
+        </ul>
+        <hr>
+        <ol>
+            <li>Это первый пункт</li>
+            <li>А это второй</li>
+            <li>Но может быть и третий</li>
+        </ol>
+
+	<form action="" method="post">
+{{ form.csrf_token() }}
+
+{{ form.way.label }}
+{{ form.way }}
+{% for error in form.way.errors %}
+{{error}}
+{% endfor %}
+
+{{ form.submit }}
+</form>
+
+	</body>
+<!--</html>-->
