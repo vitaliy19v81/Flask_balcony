@@ -10,14 +10,29 @@
     color: red;
     font-size:30px;
     text-align:center;
+    background-color:#ddd;
 }
 
 body {
     background-color:#ddd;
 }
 
+p {
+    color:#090;
+}
+
 form {
     color: blue;
     font-size:20px;
+    background-color:#ddd;
+}
 
+.wrapper__img {
+position: relative;
+}
+
+.zmdi {
+position: absolute;
+top: 0;
+right: 0;
 }

@@ -6,10 +6,16 @@
 
 <br>
 <br>
+<!--<div class="wrapper__img">-->
+<!--  <img src="{{ url_for('static', filename='hall.jpg') }}">-->
+<!--  <i class="zmdi zmdi-close">торморпспспс</i>-->
+<!--</div>-->
+
 <div class="row">
+
     <div class="col-4">
 
-        <div class="card">
+        <div class="card" style="background-color:#E6E6FA">
           <div class="card-body">
             <div class="location" value="">
                 Вы находитесь: в Подземелье, Вам надо выбраться на балкон.
@@ -17,14 +23,19 @@
           </div>
         </div>
 
+        <div class="card" style="background-color:#E6E6FA">
+          <div class="card-body">
+                <div class="wall" value=""></div>
+          </div>
+        </div>
 
-        <div class="wall" value=""></div>
+
 
     </div>
 <br>
 <br>
     <div class="col-4">
-        <form class="form-control" id="adventure_form_way" action="/forma" method="post">
+        <form class="form-control" id="adventure_form_way" action="/forma" method="post" style="background-color:#E6E6FA">
         {{ form_way.csrf_token() }}
 
         {{ form_way.way.label }}
@@ -42,7 +53,9 @@
         <img src="{{ url_for('static', filename='home.jpg') }}">
     </div>
 </div>
+
 {% endblock %}
+
 
 {% block scripts %}
     {{super()}}
@@ -60,7 +73,28 @@
                     var div = document.getElementsByClassName('location')[0]; // находим элемент по имени класса
                     // возвращается коллекция из которой берем нулевой элемент
                     div.innerHTML = 'Вы находитесь: ' + data['location']; // и прописываем текст взятый из json
+
+                    if (data['location']=='Спальне') {
+                      document.querySelector('body').setAttribute("background","/static/bedroom.jpg");
+                    }
+                    if (data['location']=='Холле') {
+                      document.querySelector('body').setAttribute("background","/static/hall.jpg");
+                    }
+                    if (data['location']=='Кухне') {
+                      document.querySelector('body').setAttribute("background","/static/kitchen.jpg");
+                    }
+                    if (data['location']=='Коридоре') {
+                      document.querySelector('body').setAttribute("background","/static/hallway.jpg");
+                    }
+                    if (data['location']=='Оружейной') {
+                      document.querySelector('body').setAttribute("background","/static/armory.jpg");
+                    }
+                    if (data['location']=='Подземелье') {
+                      document.querySelector('body').setAttribute("background","/static/dungeon.jpg");
+                    }
+
                     if (data['location']=='Балконе') {
+                      document.querySelector('body').setAttribute("background","/static/balcony.jpg");
                       alert( "Вы выбрались на балкон!" );
                     }
 
